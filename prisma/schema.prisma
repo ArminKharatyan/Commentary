@@ -79,9 +79,9 @@ model Subboard {
 
 
 model Subscription {
-  user        User      @relation(fields: [userId], references: [id])
+  user        User      @relation(fields: [userId], references: [id], onDelete: Cascade)
   userId      String
-  subboard    Subboard @relation(fields: [subboardId], references: [id])
+  subboard    Subboard @relation(fields: [subboardId], references: [id], onDelete: Cascade)
   subboardId String
 
   @@id([userId, subboardId])
@@ -95,7 +95,7 @@ model Post {
   updatedAt   DateTime  @updatedAt
   author      User      @relation(fields: [authorId], references: [id])
   authorId    String
-  subboard    Subboard @relation(fields: [subboardId], references: [id])
+  subboard    Subboard @relation(fields: [subboardId], references: [id], onDelete: Cascade)
   subboardId String
   comments    Comment[] 
   votes       Vote[]
